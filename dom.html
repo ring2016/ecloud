@@ -12,13 +12,14 @@
        <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=ZUONbpqGBsYGXNIYHicvbAbM"></script>
        <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/extension/bmap.min.js"></script>
        <script type="text/javascript" src="http://www.jianvary.com/vue.js"></script>
+       <script type="text/javascript" src="http://www.jianvary.com/jquery.js"></script>
        <div id="app">  
         <div style="margin-top:20px;">
             地区：
-            <button v-on:click="changeData">上海</button>  
-            <button v-on:click="changeData2">广州</button>  
-            <button v-on:click="changeData3">北京</button>  
-            <button v-on:click="changeData4">成都</button>  
+            <button v-on:click="changeData" id="shanghai">上海</button>  
+            <button v-on:click="changeData2" id="guangzhou">广州</button>  
+            <button v-on:click="changeData3" id="beijing">北京</button>  
+            <button v-on:click="changeData4" id="chengdou">成都</button>  
         </div>
         <!-- 为ECharts准备一个具备大小（宽高）的Dom -->    
         <div  id="main" style="width: 600px;height:450px;"></div>    
@@ -33,16 +34,24 @@
             },  
             methods: {  
             changeData: function(){
-                this.message = [10,20,30,50]
+                this.message = [10,20,30,50];
+                $('#shanghai').css({"background":'blue','color':'#fff'});
+                $('button#shanghai').siblings().css({"background":'#eee','color':'#000'});
             },  
             changeData2: function(){
-                this.message = [20,30,40,50]
+                this.message = [20,30,40,50];
+                $('#guangzhou').css({"background":'blue','color':'#fff'});
+                $('button#guangzhou').siblings().css({"background":'#eee','color':'#000'});
             },  
             changeData3: function(){
-                this.message = [25,30,45,50]
+                this.message = [25,30,45,50];
+                $('#beijing').css({"background":'blue','color':'#fff'});
+                $('button#beijing').siblings().css({"background":'#eee','color':'#000'});
             },  
             changeData4: function(){
-                this.message = [10,30,10,50]
+                this.message = [10,30,10,50];
+                $('#chengdou').css({"background":'blue','color':'#fff'});
+                $('button#chengdou').siblings().css({"background":'#eee','color':'#000'});
             },  
             draw(){                                                                             
                 // 指定图表的配置项和数据    
