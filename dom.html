@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html style="height: 100%">
+   <head>
+       <meta charset="utf-8">
+   </head>
+   <body >    
+       <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/echarts-all-3.js"></script>
+       <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts-stat/ecStat.min.js"></script>
+       <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/extension/dataTool.min.js"></script>
+       <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/map/js/china.js"></script>
+       <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/map/js/world.js"></script>
+       <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=ZUONbpqGBsYGXNIYHicvbAbM"></script>
+       <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/extension/bmap.min.js"></script>
+       <script type="text/javascript" src="http://www.jianvary.com/vue.js"></script>
+       <div id="app">  
+        <div style="margin-top:20px;">
+            地区：
+            <button v-on:click="changeData">上海</button>  
+            <button v-on:click="changeData2">广州</button>  
+            <button v-on:click="changeData3">北京</button>  
+            <button v-on:click="changeData4">成都</button>  
+        </div>
+        <!-- 为ECharts准备一个具备大小（宽高）的Dom -->    
+        <div  id="main" style="width: 600px;height:450px;"></div>    
+      </div>
+      <script>  
+  
+        // 它连接 View 与 Model               
+        var app = new Vue({  
+            el: '#app',  
+            data: {
+                message:[10,20,30,50]
+            },  
+            methods: {  
+            changeData: function(){
+                this.message = [10,20,30,50]
+            },  
+            changeData2: function(){
+                this.message = [20,30,40,50]
+            },  
+            changeData3: function(){
+                this.message = [25,30,45,50]
+            },  
+            changeData4: function(){
+                this.message = [10,30,10,50]
+            },  
+            draw(){                                                                             
+                // 指定图表的配置项和数据    
+                var category=["ucloud","啊里云","腾讯云","金山云"];  
+                var option = {    
+                    title: {    
+                        // text: 'ECharts 入门示例'    
+                    },    
+                    tooltip: {},    
+                    xAxis: {    
+                        data: category  
+                    },    
+                    yAxis: {},    
+                    series: [{    
+                        type: 'bar',    
+                        data: this.message,   //数据绑定  
+                        itemStyle: {   
+                            //通常情况下：
+                            normal:{  
+            　　　　　　　　　　　　//每个柱子的颜色即为colorList数组里的每一项，如果柱子数目多于colorList的长度，则柱子颜色循环使用该数组
+                                color: function (params){
+                                    var colorList = ['rgb(164,205,238)','rgb(42,170,227)','rgb(25,46,94)','blue'];
+                                    return colorList[params.dataIndex];
+                                },
+                                barBorderRadius:[10, 10, 0, 0],
+                            },
+                            //鼠标悬停时：
+                            // emphasis: {
+                            //         shadowBlur: 10,
+                            //         shadowOffsetX: 0,
+                            //         shadowColor: 'rgba(0, 0, 0, 0.5)',
+                            //         barBorderRadius: 30
+                            // },
+                            label: {
+                                show: false,
+                                // position: 'top',
+                                // textStyle: {
+                                //     color: 'blue',
+                                //     fontWeight:'bolder',  
+                                //     fontSize : '12',  
+                                //     fontFamily : '微软雅黑',  
+                                // }
+                            },
+                        },
+                    }],
+                };    
+                // 使用刚指定的配置项和数据显示图表。    
+                this.myChart.setOption(option);      
+            }  
+            },  
+            watch:{  //数据变化时自动重画，在控制台修改message,会自动重画  
+                message: function(){  
+                this.draw();      
+                }  
+            },  
+            mounted(){  
+                this.$nextTick(function() {  
+                    this.myChart = echarts.init(document.getElementById('main'));  //初始化echarts实例  
+                    this.draw();  
+                })  
+            }  
+        });  
+  
+    </script>  
+   </body>
+</html>
