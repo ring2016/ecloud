@@ -54,10 +54,10 @@
             <div style="clear:both;"></div>
             <div id="area">
                 地区：
-                <button v-on:click="clickArea('shanghai')" id="shanghai">上海</button>  
-                <button v-on:click="clickArea('guangzhou')" id="guangzhou">广州</button>  
-                <button v-on:click="clickArea('beijing')" id="beijing">北京</button>  
-                <button v-on:click="clickArea('chengdou')" id="chengdou">成都</button>  
+                <button v-on:click="clickArea('shanghai')" @click="changeData" id="shanghai">上海</button>  
+                <button v-on:click="clickArea('guangzhou')" @click="changeData2" id="guangzhou">广州</button>  
+                <button v-on:click="clickArea('beijing')" @click="changeData3" id="beijing">北京</button>  
+                <button v-on:click="clickArea('chengdou')" @click="changeData4" id="chengdou">成都</button>  
             </div>
             <div>{{area}}</div>
         </div>
@@ -225,22 +225,22 @@
                     }
                 },
                 changeData: function(){
-                    this.message = [10,20,30,50];
+                    // this.message = [10,20,30,50];
                     $('#shanghai').css({"background":'blue','color':'#fff'});
                     $('button#shanghai').siblings().css({"background":'#eee','color':'#000'});
                 },  
                 changeData2: function(){
-                    this.message = [20,30,40,50];
+                    // this.message = [20,30,40,50];
                     $('#guangzhou').css({"background":'blue','color':'#fff'});
                     $('button#guangzhou').siblings().css({"background":'#eee','color':'#000'});
                 },  
                 changeData3: function(){
-                    this.message = [25,30,45,50];
+                    // this.message = [25,30,45,50];
                     $('#beijing').css({"background":'blue','color':'#fff'});
                     $('button#beijing').siblings().css({"background":'#eee','color':'#000'});
                 },  
                 changeData4: function(){
-                    this.message = [10,30,10,50];
+                    // this.message = [10,30,10,50];
                     $('#chengdou').css({"background":'blue','color':'#fff'});
                     $('button#chengdou').siblings().css({"background":'#eee','color':'#000'});
                 },  
