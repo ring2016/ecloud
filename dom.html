@@ -54,12 +54,12 @@
             <div style="clear:both;"></div>
             <div id="area">
                 地区：
-                <button v-on:click="changeData" id="shanghai">上海</button>  
-                <button v-on:click="changeData2" id="guangzhou">广州</button>  
-                <button v-on:click="changeData3" id="beijing">北京</button>  
-                <button v-on:click="changeData4" id="chengdou">成都</button>  
+                <button v-on:click="clickArea('shanghai')" id="shanghai">上海</button>  
+                <button v-on:click="clickArea('guangzhou')" id="guangzhou">广州</button>  
+                <button v-on:click="clickArea('beijing')" id="beijing">北京</button>  
+                <button v-on:click="clickArea('chengdou')" id="chengdou">成都</button>  
             </div>
-            
+            <div>{{area}}</div>
         </div>
         <!-- 为ECharts准备一个具备大小（宽高）的Dom -->    
         <div  id="main" style="width: 600px;height:450px;"></div>    
@@ -76,9 +76,53 @@
 
             },  
             computed: {
-                zong: function(val){
-                    this.baseset = val;
+                zong: function(){
+                    // this.baseset = val;
                     if(this.baseset =='2g'){
+                        switch(this.area){
+                            case 'beijing':
+                                this.message = [20,25,30,35];
+                                break;
+                        }
+                        switch(this.area){
+                            case 'shanghai':
+                                this.message = [25,35,35,25];
+                                break;
+                        }
+                        switch(this.area){
+                            case 'guangzhou':
+                                this.message = [40,25,60,25];
+                                break;
+                        }
+                        switch(this.area){
+                            case 'chengdou':
+                                this.message = [10,55,10,55];
+                                break;
+                        }
+                    }
+                    if(this.baseset =='4g'){
+                        switch(this.area){
+                            case 'beijing':
+                                this.message = [20,25,30,35];
+                                break;
+                        }
+                        switch(this.area){
+                            case 'shanghai':
+                                this.message = [25,35,35,25];
+                                break;
+                        }
+                        switch(this.area){
+                            case 'guangzhou':
+                                this.message = [40,25,60,25];
+                                break;
+                        }
+                        switch(this.area){
+                            case 'chengdou':
+                                this.message = [10,55,10,55];
+                                break;
+                        }
+                    }
+                    if(this.baseset =='8g'){
                         switch(this.area){
                             case 'beijing':
                                 this.message = [20,25,30,35];
@@ -105,6 +149,80 @@
             methods: {  
                 clickset: function(val){
                     this.baseset = val;
+                    this.zongData();
+                },
+                clickArea: function(val){
+                    this.area = val;
+                    this.zongData();
+                },
+                zongData: function(){
+                    // this.baseset = val;
+                    if(this.baseset =='2g'){
+                        switch(this.area){
+                            case 'beijing':
+                                this.message = [20,25,30,35];
+                                break;
+                        }
+                        switch(this.area){
+                            case 'shanghai':
+                                this.message = [25,35,35,25];
+                                break;
+                        }
+                        switch(this.area){
+                            case 'guangzhou':
+                                this.message = [40,25,60,25];
+                                break;
+                        }
+                        switch(this.area){
+                            case 'chengdou':
+                                this.message = [10,55,10,55];
+                                break;
+                        }
+                    }
+                    if(this.baseset =='4g'){
+                        switch(this.area){
+                            case 'beijing':
+                                this.message = [30,25,30,35];
+                                break;
+                        }
+                        switch(this.area){
+                            case 'shanghai':
+                                this.message = [35,35,35,25];
+                                break;
+                        }
+                        switch(this.area){
+                            case 'guangzhou':
+                                this.message = [30,25,60,25];
+                                break;
+                        }
+                        switch(this.area){
+                            case 'chengdou':
+                                this.message = [30,55,10,55];
+                                break;
+                        }
+                    }
+                    if(this.baseset =='8g'){
+                        switch(this.area){
+                            case 'beijing':
+                                this.message = [20,28,30,35];
+                                break;
+                        }
+                        switch(this.area){
+                            case 'shanghai':
+                                this.message = [25,38,35,25];
+                                break;
+                        }
+                        switch(this.area){
+                            case 'guangzhou':
+                                this.message = [40,28,60,25];
+                                break;
+                        }
+                        switch(this.area){
+                            case 'chengdou':
+                                this.message = [10,58,10,55];
+                                break;
+                        }
+                    }
                 },
                 changeData: function(){
                     this.message = [10,20,30,50];
