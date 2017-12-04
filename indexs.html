@@ -4,15 +4,38 @@
        <meta charset="utf-8">
        <title>易刻云</title>
        <style>
+           *{
+               margin: 0;
+               padding: 0;
+           }
            #top{
                 width: 100%;
                 height: 40px;
-                background: #e68484;
+                background: #f0f0f0;
+                line-height: 40px;
+           }
+           #logo{
+               float: left;
+               color: blue;
+               width: 100px;
+               text-align: center;
+           }
+           #login{
+               width: 100px;
+               height: 40px;
+               float: right;
+               color: #000;
+           }
+           .ptab{
+               padding-left: 50px;
            }
        </style>
    </head>
    <body style="height: 100%; margin: 0">
-       <div id="top"></div>
+       <div id="top">
+           <div id="logo">易刻云</div>
+           <div id="login">登录 &nbsp  注册</div>
+       </div>
        <div id="container" style="height: 90%"></div>
        <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/echarts-all-3.js"></script>
        <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts-stat/ecStat.min.js"></script>
@@ -55,7 +78,7 @@ var convertData = function (data) {
 };
 
 option = {
-    backgroundColor: '#f0f0f0',
+    backgroundColor: '#fff',
     title: {
         // text: '易刻云全国主机',
         // subtext: 'data from PM25.in',
@@ -73,7 +96,8 @@ option = {
         },
         formatter:function(data){
             var jsonStr = JSON.stringify(data);
-            var res = data.seriesName +':'+ Math.ceil(data.data.value[2]/100) ;
+            // var res = data.seriesName +':'+ Math.ceil(data.data.value[2]/100) ;
+            var res = data.seriesName +':'+ ' ucloud <p class="ptab"> aliyun</p> <p class="ptab"> 腾讯云</p> <p class="ptab">金山云</p>' ;
             // for(var i =0;i<data.length;i++){
             //     res = '<p>'+jsonStr[i].seriesName+'</p>';
             // }
@@ -172,7 +196,7 @@ if (option && typeof option === "object") {
     myChart.setOption(option, true);
     myChart.on('click', function(params){
         var district = params.name;
-        var url = ['http://www.baidu.com','http://baidu.com','http://baidu.com'];
+        var url = ['dom.html','dom.html','dom.html','dom.html'];
         if (district) {
             switch(district){
                 case '北京':
