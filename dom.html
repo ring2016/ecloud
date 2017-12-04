@@ -2,6 +2,30 @@
 <html style="height: 100%">
    <head>
        <meta charset="utf-8">
+       <title>价格对比</title>
+       <style>
+           *{
+               padding: 0;
+               margin: 0;
+           }
+           #price{
+               margin: 0 0 10px 20px;
+           }
+           #config{
+               margin: 0 0 10px 20px;
+           }
+           #area{
+               margin: 0 0 10px 20px;
+           }
+           #baseset{
+               float: left;
+           }
+           #cpu{
+               float: left;
+               margin-left: 20px;
+               margin-bottom: 20px;
+           }
+       </style>
    </head>
    <body >    
        <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/echarts-all-3.js"></script>
@@ -15,13 +39,20 @@
        <script type="text/javascript" src="http://www.jianvary.com/jquery.js"></script>
        <div id="app">  
         <div style="margin-top:20px;">
-            <div id="config">
-                <p>基础配置</p>
-                <p>2g </p>
-                <p>4g u</p>
-                <p>8g</p>
+            <div id="price">
+                价格对比 
             </div>
-            <div>
+            <div id="config">
+                <div id="baseset">基础配置</div>
+                <div id="cpu">
+                    <p @click= "clickset('2g')">CPU 1核 内存 2g 带宽 2M </p>
+                    <p @click= "clickset('4g')">CPU 4核 内存 4g 带宽 5M</p>
+                    <p @click= "clickset('8g')">CPU 4核 内存 8g 带宽 10M</p>
+                </div>
+            </div>
+            <div>{{baseset}}</div>
+            <div style="clear:both;"></div>
+            <div id="area">
                 地区：
                 <button v-on:click="changeData" id="shanghai">上海</button>  
                 <button v-on:click="changeData2" id="guangzhou">广州</button>  
@@ -39,29 +70,62 @@
         var app = new Vue({  
             el: '#app',  
             data: {
-                message:[10,20,30,50]
+                message:[10,20,30,50],
+                baseset: '2g',
+                area: 'beijing'
+
             },  
+            computed: {
+                zong: function(val){
+                    this.baseset = val;
+                    if(this.baseset =='2g'){
+                        switch(this.area){
+                            case 'beijing':
+                                this.message = [20,25,30,35];
+                                break;
+                        }
+                        switch(this.area){
+                            case 'shanghai':
+                                this.message = [25,35,35,25];
+                                break;
+                        }
+                        switch(this.area){
+                            case 'guangzhou':
+                                this.message = [40,25,60,25];
+                                break;
+                        }
+                        switch(this.area){
+                            case 'chengdou':
+                                this.message = [10,55,10,55];
+                                break;
+                        }
+                    }
+                }
+            },
             methods: {  
-            changeData: function(){
-                this.message = [10,20,30,50];
-                $('#shanghai').css({"background":'blue','color':'#fff'});
-                $('button#shanghai').siblings().css({"background":'#eee','color':'#000'});
-            },  
-            changeData2: function(){
-                this.message = [20,30,40,50];
-                $('#guangzhou').css({"background":'blue','color':'#fff'});
-                $('button#guangzhou').siblings().css({"background":'#eee','color':'#000'});
-            },  
-            changeData3: function(){
-                this.message = [25,30,45,50];
-                $('#beijing').css({"background":'blue','color':'#fff'});
-                $('button#beijing').siblings().css({"background":'#eee','color':'#000'});
-            },  
-            changeData4: function(){
-                this.message = [10,30,10,50];
-                $('#chengdou').css({"background":'blue','color':'#fff'});
-                $('button#chengdou').siblings().css({"background":'#eee','color':'#000'});
-            },  
+                clickset: function(val){
+                    this.baseset = val;
+                },
+                changeData: function(){
+                    this.message = [10,20,30,50];
+                    $('#shanghai').css({"background":'blue','color':'#fff'});
+                    $('button#shanghai').siblings().css({"background":'#eee','color':'#000'});
+                },  
+                changeData2: function(){
+                    this.message = [20,30,40,50];
+                    $('#guangzhou').css({"background":'blue','color':'#fff'});
+                    $('button#guangzhou').siblings().css({"background":'#eee','color':'#000'});
+                },  
+                changeData3: function(){
+                    this.message = [25,30,45,50];
+                    $('#beijing').css({"background":'blue','color':'#fff'});
+                    $('button#beijing').siblings().css({"background":'#eee','color':'#000'});
+                },  
+                changeData4: function(){
+                    this.message = [10,30,10,50];
+                    $('#chengdou').css({"background":'blue','color':'#fff'});
+                    $('button#chengdou').siblings().css({"background":'#eee','color':'#000'});
+                },  
             draw(){                                                                             
                 // 指定图表的配置项和数据    
                 var category=["ucloud","啊里云","腾讯云","金山云"];  
